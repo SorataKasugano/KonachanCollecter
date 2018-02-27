@@ -66,5 +66,14 @@
     <ClInclude Include="GeneratedFiles\ui_konachancollecter.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="KonachanCollecter.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="konachan.ico" />
   </ItemGroup>
 </Project>

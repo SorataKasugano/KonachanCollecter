@@ -42,7 +42,7 @@ void KonachanCollecter::getFolderPath()
 // 请求图片列表
 void KonachanCollecter::sendRequest()
 {
-	if ("stop" == ui.pushButton_start->text())
+	if ("Stop" == ui.pushButton_start->text())
 	{
 		// 结束所有https线程
 	}
@@ -100,19 +100,29 @@ void KonachanCollecter::getInfoAddr(QNetworkReply* reply)
 		}
 	}
 	imageCount = imageInfoUrl.count();// 图片总数
-	reply->deleteLater();
+	//reply->deleteLater();
 	// 显示进度条
 	ui.label_progress->setText(QString("Downloading...no.1/%1").arg(imageCount));
 	ui.progressBar->setRange(0, imageCount);
 	ui.progressBar->setValue(0);
 	ui.progressBar->show();
 	// 请求所有图片的概览页面
-	connect(pManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(getDownloadAddr(QNetworkReply*)));
+	//connect(pManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(getDownloadAddr(QNetworkReply*)));
+	//for (auto iter : imageInfoUrl)
+	//{
+	//	qDebug() << iter;
+	//	request.setUrl(iter);
+	//	pManager->get(request);
+	//}
 	for (auto iter : imageInfoUrl)
 	{
-		qDebug() << iter;
+		disconnect(reply);
 		request.setUrl(iter);
-		pManager->get(request);
+		reply = pManager->get(request);
+		connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+		loop.exec();
+		getDownloadAddr(reply);
+		reply->deleteLater();
 	}
 }
 
@@ -120,14 +130,20 @@ void KonachanCollecter::getInfoAddr(QNetworkReply* reply)
 void KonachanCollecter::getDownloadAddr(QNetworkReply* reply)
 {
 	QString infoPage = reply->readAll();
-	reply->deleteLater();
+	//reply->deleteLater();
 	QRegExp rx("https://konachan.com/image/[0-9a-z]+/Konachan.com[0-9a-z-_%]+.png|https://konachan.com/image/[0-9a-z]+/Konachan.com[0-9a-z-_%]+.jpg");
 	QNetworkAccessManager* pManager = new QNetworkAccessManager();
 	rx.indexIn(infoPage);
 	requestUrl = rx.cap();
 	request.setUrl(requestUrl);
-	connect(pManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(downloadImage(QNetworkReply*)));
-	pManager->get(request);
+	//connect(pManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(downloadImage(QNetworkReply*)));
+	//pManager->get(request);
+	QEventLoop loop;
+	reply = pManager->get(request);
+	connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+	loop.exec();
+	downloadImage(reply);
+	reply->deleteLater();
 }
 
 // 下载器
