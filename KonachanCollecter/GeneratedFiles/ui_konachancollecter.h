@@ -39,6 +39,8 @@ public:
     QProgressBar *progressBar;
     QLabel *label_progress;
     QPushButton *pushButton_tags;
+    QLineEdit *lineEdit_maxThread;
+    QLabel *label_3;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -80,6 +82,12 @@ public:
         pushButton_tags = new QPushButton(centralWidget);
         pushButton_tags->setObjectName(QStringLiteral("pushButton_tags"));
         pushButton_tags->setGeometry(QRect(650, 120, 92, 28));
+        lineEdit_maxThread = new QLineEdit(centralWidget);
+        lineEdit_maxThread->setObjectName(QStringLiteral("lineEdit_maxThread"));
+        lineEdit_maxThread->setGeometry(QRect(180, 200, 113, 21));
+        label_3 = new QLabel(centralWidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(100, 200, 72, 15));
         KonachanCollecterClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(KonachanCollecterClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -107,6 +115,7 @@ public:
         pushButton_start->setText(QApplication::translate("KonachanCollecterClass", "Start", 0));
         label_progress->setText(QApplication::translate("KonachanCollecterClass", "Please wait for a minute...", 0));
         pushButton_tags->setText(QApplication::translate("KonachanCollecterClass", "All tags", 0));
+        label_3->setText(QApplication::translate("KonachanCollecterClass", "Threads:", 0));
     } // retranslateUi
 
 };

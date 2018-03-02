@@ -113,7 +113,7 @@
      <rect>
       <x>180</x>
       <y>50</y>
-      <width>241</width>
+      <width>451</width>
       <height>16</height>
      </rect>
     </property>
@@ -132,6 +132,29 @@
     </property>
     <property name="text">
      <string>All tags</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_maxThread">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>200</y>
+      <width>113</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>200</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Threads:</string>
     </property>
    </widget>
   </widget>
