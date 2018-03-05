@@ -21,7 +21,8 @@ void KonachanThread::run()
 	queueUrl.enqueue(m_seedUrl);
 	while (true)
 	{
-		if (!queueUrl.isEmpty())
+		while(!queueUrl.isEmpty())
+		//if (!queueUrl.isEmpty())
 		{
 			QUrl url = queueUrl.dequeue();
 			qDebug() << "(1)task url:" << url;
@@ -36,6 +37,7 @@ void KonachanThread::run()
 		}
 		if (!threadPool.activeThreadCount())
 			break;
+		sleep(1);// 每秒添加一次任务队列
 	}
 }
 

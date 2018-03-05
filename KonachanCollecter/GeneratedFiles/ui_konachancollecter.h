@@ -78,7 +78,7 @@ public:
         progressBar->setTextVisible(true);
         label_progress = new QLabel(centralWidget);
         label_progress->setObjectName(QStringLiteral("label_progress"));
-        label_progress->setGeometry(QRect(180, 50, 241, 16));
+        label_progress->setGeometry(QRect(180, 50, 451, 16));
         pushButton_tags = new QPushButton(centralWidget);
         pushButton_tags->setObjectName(QStringLiteral("pushButton_tags"));
         pushButton_tags->setGeometry(QRect(650, 120, 92, 28));
