@@ -13,15 +13,13 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -30,75 +28,131 @@ class Ui_KonachanCollecterClass
 {
 public:
     QWidget *centralWidget;
+    QWidget *gridLayoutWidget;
+    QGridLayout *gridLayout;
+    QLabel *label_3;
     QLabel *label;
     QLabel *label_2;
-    QLineEdit *lineEdit_tags;
-    QLineEdit *lineEdit_folderPath;
-    QPushButton *pushButton_selectFolder;
-    QPushButton *pushButton_start;
     QProgressBar *progressBar;
+    QLineEdit *lineEdit_tags;
     QLabel *label_progress;
-    QPushButton *pushButton_tags;
+    QPushButton *pushButton_selectFolder;
+    QLineEdit *lineEdit_folderPath;
     QLineEdit *lineEdit_maxThread;
-    QLabel *label_3;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
+    QPushButton *pushButton_tags;
+    QPushButton *pushButton_start;
 
     void setupUi(QMainWindow *KonachanCollecterClass)
     {
         if (KonachanCollecterClass->objectName().isEmpty())
             KonachanCollecterClass->setObjectName(QStringLiteral("KonachanCollecterClass"));
-        KonachanCollecterClass->resize(929, 292);
+        KonachanCollecterClass->resize(1000, 250);
+        KonachanCollecterClass->setMaximumSize(QSize(1000, 250));
+        QFont font;
+        font.setFamily(QStringLiteral("Kristen ITC"));
+        KonachanCollecterClass->setFont(font);
         centralWidget = new QWidget(KonachanCollecterClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        label = new QLabel(centralWidget);
+        gridLayoutWidget = new QWidget(centralWidget);
+        gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
+        gridLayoutWidget->setGeometry(QRect(60, 30, 881, 181));
+        gridLayout = new QGridLayout(gridLayoutWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        label_3 = new QLabel(gridLayoutWidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setFont(font);
+
+        gridLayout->addWidget(label_3, 7, 0, 1, 1);
+
+        label = new QLabel(gridLayoutWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(100, 120, 61, 16));
-        label_2 = new QLabel(centralWidget);
+        label->setFont(font);
+
+        gridLayout->addWidget(label, 3, 0, 1, 1);
+
+        label_2 = new QLabel(gridLayoutWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(100, 160, 61, 16));
-        lineEdit_tags = new QLineEdit(centralWidget);
-        lineEdit_tags->setObjectName(QStringLiteral("lineEdit_tags"));
-        lineEdit_tags->setGeometry(QRect(180, 120, 451, 21));
-        lineEdit_folderPath = new QLineEdit(centralWidget);
-        lineEdit_folderPath->setObjectName(QStringLiteral("lineEdit_folderPath"));
-        lineEdit_folderPath->setGeometry(QRect(180, 160, 451, 21));
-        pushButton_selectFolder = new QPushButton(centralWidget);
-        pushButton_selectFolder->setObjectName(QStringLiteral("pushButton_selectFolder"));
-        pushButton_selectFolder->setGeometry(QRect(650, 160, 92, 28));
-        pushButton_start = new QPushButton(centralWidget);
-        pushButton_start->setObjectName(QStringLiteral("pushButton_start"));
-        pushButton_start->setGeometry(QRect(760, 120, 91, 71));
-        progressBar = new QProgressBar(centralWidget);
+        label_2->setFont(font);
+
+        gridLayout->addWidget(label_2, 6, 0, 1, 1);
+
+        progressBar = new QProgressBar(gridLayoutWidget);
         progressBar->setObjectName(QStringLiteral("progressBar"));
         progressBar->setEnabled(true);
-        progressBar->setGeometry(QRect(180, 80, 451, 23));
+        progressBar->setFont(font);
         progressBar->setValue(24);
         progressBar->setTextVisible(true);
-        label_progress = new QLabel(centralWidget);
+
+        gridLayout->addWidget(progressBar, 1, 1, 1, 1);
+
+        lineEdit_tags = new QLineEdit(gridLayoutWidget);
+        lineEdit_tags->setObjectName(QStringLiteral("lineEdit_tags"));
+        lineEdit_tags->setFont(font);
+
+        gridLayout->addWidget(lineEdit_tags, 3, 1, 1, 1);
+
+        label_progress = new QLabel(gridLayoutWidget);
         label_progress->setObjectName(QStringLiteral("label_progress"));
-        label_progress->setGeometry(QRect(180, 50, 451, 16));
-        pushButton_tags = new QPushButton(centralWidget);
-        pushButton_tags->setObjectName(QStringLiteral("pushButton_tags"));
-        pushButton_tags->setGeometry(QRect(650, 120, 92, 28));
-        lineEdit_maxThread = new QLineEdit(centralWidget);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label_progress->sizePolicy().hasHeightForWidth());
+        label_progress->setSizePolicy(sizePolicy);
+        label_progress->setMaximumSize(QSize(16777215, 16777215));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Kristen ITC"));
+        font1.setPointSize(12);
+        font1.setBold(false);
+        font1.setItalic(false);
+        font1.setWeight(50);
+        label_progress->setFont(font1);
+
+        gridLayout->addWidget(label_progress, 0, 1, 1, 1);
+
+        pushButton_selectFolder = new QPushButton(gridLayoutWidget);
+        pushButton_selectFolder->setObjectName(QStringLiteral("pushButton_selectFolder"));
+        pushButton_selectFolder->setFont(font);
+
+        gridLayout->addWidget(pushButton_selectFolder, 6, 2, 1, 1);
+
+        lineEdit_folderPath = new QLineEdit(gridLayoutWidget);
+        lineEdit_folderPath->setObjectName(QStringLiteral("lineEdit_folderPath"));
+        lineEdit_folderPath->setFont(font);
+
+        gridLayout->addWidget(lineEdit_folderPath, 6, 1, 1, 1);
+
+        lineEdit_maxThread = new QLineEdit(gridLayoutWidget);
         lineEdit_maxThread->setObjectName(QStringLiteral("lineEdit_maxThread"));
-        lineEdit_maxThread->setGeometry(QRect(180, 200, 113, 21));
-        label_3 = new QLabel(centralWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(100, 200, 72, 15));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(lineEdit_maxThread->sizePolicy().hasHeightForWidth());
+        lineEdit_maxThread->setSizePolicy(sizePolicy1);
+        lineEdit_maxThread->setFont(font);
+
+        gridLayout->addWidget(lineEdit_maxThread, 7, 1, 1, 1);
+
+        pushButton_tags = new QPushButton(gridLayoutWidget);
+        pushButton_tags->setObjectName(QStringLiteral("pushButton_tags"));
+        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(pushButton_tags->sizePolicy().hasHeightForWidth());
+        pushButton_tags->setSizePolicy(sizePolicy2);
+        pushButton_tags->setFont(font);
+
+        gridLayout->addWidget(pushButton_tags, 3, 2, 1, 1);
+
+        pushButton_start = new QPushButton(gridLayoutWidget);
+        pushButton_start->setObjectName(QStringLiteral("pushButton_start"));
+        pushButton_start->setFont(font);
+
+        gridLayout->addWidget(pushButton_start, 7, 2, 1, 1);
+
         KonachanCollecterClass->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(KonachanCollecterClass);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 929, 26));
-        KonachanCollecterClass->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(KonachanCollecterClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        KonachanCollecterClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(KonachanCollecterClass);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        KonachanCollecterClass->setStatusBar(statusBar);
 
         retranslateUi(KonachanCollecterClass);
 
@@ -108,14 +162,17 @@ public:
     void retranslateUi(QMainWindow *KonachanCollecterClass)
     {
         KonachanCollecterClass->setWindowTitle(QApplication::translate("KonachanCollecterClass", "KonachanCollecter", 0));
+        label_3->setText(QApplication::translate("KonachanCollecterClass", "Threads:", 0));
         label->setText(QApplication::translate("KonachanCollecterClass", "Tag(s):", 0));
         label_2->setText(QApplication::translate("KonachanCollecterClass", "Folder:", 0));
         lineEdit_tags->setText(QString());
-        pushButton_selectFolder->setText(QApplication::translate("KonachanCollecterClass", "Select", 0));
-        pushButton_start->setText(QApplication::translate("KonachanCollecterClass", "Start", 0));
+        lineEdit_tags->setPlaceholderText(QApplication::translate("KonachanCollecterClass", "6 tags at most:dress long_hair ...", 0));
         label_progress->setText(QApplication::translate("KonachanCollecterClass", "Please wait for a minute...", 0));
+        pushButton_selectFolder->setText(QApplication::translate("KonachanCollecterClass", "Select", 0));
+        lineEdit_folderPath->setText(QApplication::translate("KonachanCollecterClass", "D:/KonachanImages", 0));
+        lineEdit_maxThread->setText(QApplication::translate("KonachanCollecterClass", "10", 0));
         pushButton_tags->setText(QApplication::translate("KonachanCollecterClass", "All tags", 0));
-        label_3->setText(QApplication::translate("KonachanCollecterClass", "Threads:", 0));
+        pushButton_start->setText(QApplication::translate("KonachanCollecterClass", "Start", 0));
     } // retranslateUi
 
 };

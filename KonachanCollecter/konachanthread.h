@@ -7,26 +7,25 @@
 #include <QEventLoop>
 #include <QThreadPool>
 #include <QQueue>
-#include <QReadWriteLock>
-#include <QDir>
+#include <QMutex>
 #include <QFile>
 // 工作线程
 class KonachanThread :public QThread
 {
 	Q_OBJECT
 public:
-	KonachanThread(QUrl, QString, int);
+	KonachanThread(QString, QString, int);
 	void run();
 
 	public slots:
-	void sendProgress(int, int);
+	void sendProgress(int);
 signals:
-	void newProgress(int, int);
+	void newProgress(int, int);// 当前总进度
 
 private:
-	QUrl m_seedUrl;		// 原始url
-	int m_maxThread;		// 线程池最大线程数
-	QString m_path;		// 保存路径
+	QString m_seedUrl;		// 原始url
+	QString m_path;			// 保存路径
+	QThreadPool threadPool;	// 管理https连接线程池
 };
 
 // 线程池子线程
@@ -34,20 +33,24 @@ class KonachanTask :public QObject, public QRunnable
 {
 	Q_OBJECT
 public:
-	KonachanTask(QUrl,QString);
-	void init();
+	KonachanTask(QString, QString);
 	void run();
-	void analyze(QNetworkReply*);
+	void analyze();
+	void extractPagingUrl();
+	void extractInfoUrl();
+	void extractDownloadUrl();
+	void download();
 
 signals:
-	void newFinished(int, int);
+	void newFinished(int);// 当前下载进度
 
 private:
-	QUrl m_url;
+	QString m_url;
 	QSslConfiguration sslConfig;
 	QNetworkRequest m_request;
 	QNetworkReply* m_reply;
 
 	QString m_path;					// 保存路径
+	QByteArray m_page;				// 页面缓存
 	QList<QRegExp> m_rxList;			// 多次页面分析所需的正则表达式列表
 };

@@ -4,6 +4,8 @@
 #include <QtWidgets/QMainWindow>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QDir>
+#include <QDesktopServices>
 #include "ui_konachancollecter.h"
 #include "konachanthread.h"
 class KonachanCollecter : public QMainWindow
@@ -15,12 +17,13 @@ public:
 	~KonachanCollecter();
 
 	public slots:
-	void getFolderPath();
-	void sendRequest();
+	void hyperlink();
+	void changeFolderPath();
+	void startMisson();
 	void updateProgress(int, int);
 
 private:
 	Ui::KonachanCollecterClass ui;
-	KonachanThread* thread;
+	KonachanThread* thread;// 工作线程
 };
 #endif // KONACHANCOLLECTER_H
