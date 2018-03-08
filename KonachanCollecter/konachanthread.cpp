@@ -24,7 +24,6 @@ void KonachanThread::run()
 			queueMutex.lock();
 			QString url = queueUrl.dequeue();
 			queueMutex.unlock();
-			qDebug() << "(1)task url:" << url;
 			// QThreadPool deletes the QRunnable automatically by default
 			KonachanTask* task = new KonachanTask(url, m_path);
 			QObject::connect(task, SIGNAL(newFinished(int)), this, SLOT(sendProgress(int)));
@@ -39,7 +38,6 @@ void KonachanThread::run()
 			break;
 		sleep(1);// 每秒添加一次url队列
 	}
-	qDebug() << "(0)The worker thread will be soon end.";
 }
 
 // 更新下载进度
@@ -73,6 +71,7 @@ void KonachanTask::run()
 	loop.exec();
 	m_page = m_reply->readAll();
 	// it is the responsibility of the user to delete the QNetworkReply object at an appropriate time
+	pManager->deleteLater();
 	m_reply->deleteLater();
 	analyze();
 }
