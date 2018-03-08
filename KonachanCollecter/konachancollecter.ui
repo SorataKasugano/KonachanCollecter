@@ -35,220 +35,278 @@
     <normaloff>:/konachan.ico</normaloff>:/konachan.ico</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(240, 240, 220);</string>
+   <string notr="true">background-image: url(:/bottom.jpg);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="gridLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>30</y>
-      <width>881</width>
-      <height>181</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="7" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-        </font>
-       </property>
-       <property name="text">
-        <string>Threads:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-        </font>
-       </property>
-       <property name="text">
-        <string>Tag(s):</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-        </font>
-       </property>
-       <property name="text">
-        <string>Folder:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QProgressBar" name="progressBar">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(55, 200, 11);</string>
-       </property>
-       <property name="maximum">
-        <number>0</number>
-       </property>
-       <property name="value">
-        <number>0</number>
-       </property>
-       <property name="textVisible">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit_tags">
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="placeholderText">
-        <string>6 tags at most like :dress long_hair ... more tags refer to &quot;All tags&quot;</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="label_progress">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-         <pointsize>12</pointsize>
-         <weight>50</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Please wait for a minute...</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="2">
-      <widget class="QPushButton" name="pushButton_selectFolder">
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-        </font>
-       </property>
-       <property name="text">
-        <string>Select</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QLineEdit" name="lineEdit_folderPath">
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-        </font>
-       </property>
-       <property name="text">
-        <string>D:/KonachanImages</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QLineEdit" name="lineEdit_maxThread">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string>tooltip</string>
-       </property>
-       <property name="statusTip">
-        <string/>
-       </property>
-       <property name="whatsThis">
-        <string/>
-       </property>
-       <property name="accessibleName">
-        <string/>
-       </property>
-       <property name="accessibleDescription">
-        <string/>
-       </property>
-       <property name="inputMask">
-        <string>D9</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="placeholderText">
-        <string>10 by default and no more than 30 threads is suggested :otherwise you may be blocked</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="2">
-      <widget class="QPushButton" name="pushButton_tags">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-        </font>
-       </property>
-       <property name="text">
-        <string>All tags</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="2">
-      <widget class="QPushButton" name="pushButton_start">
-       <property name="font">
-        <font>
-         <family>Kristen ITC</family>
-        </font>
-       </property>
-       <property name="text">
-        <string>Start</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <property name="leftMargin">
+       <number>50</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>50</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url();</string>
+        </property>
+        <property name="text">
+         <string>Threads:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url();</string>
+        </property>
+        <property name="text">
+         <string>Tag(s):</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url();</string>
+        </property>
+        <property name="text">
+         <string>Folder:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QProgressBar" name="progressBar">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QProgressBar {
+   color: rgba(0,0,0,150);
+   text-align: right;
+   border: 1px solid white;
+   background-image: url();
+   background-color: rgba(255,255,255,200);
+}
+ 
+QProgressBar::chunk {
+   background-color: rgba(210,210,210,255);
+}</string>
+        </property>
+        <property name="maximum">
+         <number>0</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+        <property name="textVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEdit_tags">
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url();
+background-color: rgba(255, 255, 255, 100);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>6 tags at most like :dress long_hair ... more tags refer to &quot;All tags&quot;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_progress">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgba(0,0,0,180);
+background-image: url();</string>
+        </property>
+        <property name="text">
+         <string>Please wait for a minute...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QPushButton" name="pushButton_selectFolder">
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url();
+background-color: rgba(255, 255, 255, 100);</string>
+        </property>
+        <property name="text">
+         <string>Select</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLineEdit" name="lineEdit_folderPath">
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url();
+background-color: rgba(255, 255, 255, 100);</string>
+        </property>
+        <property name="text">
+         <string>D:/KonachanImages</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLineEdit" name="lineEdit_maxThread">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>tooltip</string>
+        </property>
+        <property name="statusTip">
+         <string/>
+        </property>
+        <property name="whatsThis">
+         <string/>
+        </property>
+        <property name="accessibleName">
+         <string/>
+        </property>
+        <property name="accessibleDescription">
+         <string/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url();
+background-color: rgba(255, 255, 255, 100);</string>
+        </property>
+        <property name="inputMask">
+         <string>D9</string>
+        </property>
+        <property name="text">
+         <string>10</string>
+        </property>
+        <property name="placeholderText">
+         <string>10 by default and no more than 30 threads is suggested :otherwise you may be blocked</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QPushButton" name="pushButton_tags">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url();
+background-color: rgba(255, 255, 255, 100);</string>
+        </property>
+        <property name="text">
+         <string>All tags</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="2">
+       <widget class="QPushButton" name="pushButton_start">
+        <property name="font">
+         <font>
+          <family>Kristen ITC</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url();
+background-color: rgba(255, 255, 255, 100);</string>
+        </property>
+        <property name="text">
+         <string>Start</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

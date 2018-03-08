@@ -28,7 +28,7 @@ class Ui_KonachanCollecterClass
 {
 public:
     QWidget *centralWidget;
-    QWidget *gridLayoutWidget;
+    QGridLayout *gridLayout_2;
     QGridLayout *gridLayout;
     QLabel *label_3;
     QLabel *label;
@@ -55,53 +55,73 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/konachan.ico"), QSize(), QIcon::Normal, QIcon::Off);
         KonachanCollecterClass->setWindowIcon(icon);
-        KonachanCollecterClass->setStyleSheet(QStringLiteral("background-color: rgb(240, 240, 220);"));
+        KonachanCollecterClass->setStyleSheet(QStringLiteral("background-image: url(:/bottom.jpg);"));
         centralWidget = new QWidget(KonachanCollecterClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        gridLayoutWidget = new QWidget(centralWidget);
-        gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(60, 30, 881, 181));
-        gridLayout = new QGridLayout(gridLayoutWidget);
+        gridLayout_2 = new QGridLayout(centralWidget);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        label_3 = new QLabel(gridLayoutWidget);
+        gridLayout->setContentsMargins(50, 0, 50, 0);
+        label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setFont(font);
+        label_3->setStyleSheet(QStringLiteral("background-image: url();"));
 
         gridLayout->addWidget(label_3, 7, 0, 1, 1);
 
-        label = new QLabel(gridLayoutWidget);
+        label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setFont(font);
+        label->setStyleSheet(QStringLiteral("background-image: url();"));
 
         gridLayout->addWidget(label, 3, 0, 1, 1);
 
-        label_2 = new QLabel(gridLayoutWidget);
+        label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setFont(font);
+        label_2->setStyleSheet(QStringLiteral("background-image: url();"));
 
         gridLayout->addWidget(label_2, 6, 0, 1, 1);
 
-        progressBar = new QProgressBar(gridLayoutWidget);
+        progressBar = new QProgressBar(centralWidget);
         progressBar->setObjectName(QStringLiteral("progressBar"));
         progressBar->setEnabled(true);
-        progressBar->setFont(font);
-        progressBar->setStyleSheet(QStringLiteral("color: rgb(55, 200, 11);"));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Kristen ITC"));
+        font1.setBold(true);
+        font1.setWeight(75);
+        progressBar->setFont(font1);
+        progressBar->setLayoutDirection(Qt::LeftToRight);
+        progressBar->setStyleSheet(QLatin1String("QProgressBar {\n"
+"   color: rgba(0,0,0,150);\n"
+"   text-align: right;\n"
+"   border: 1px solid white;\n"
+"   background-image: url();\n"
+"   background-color: rgba(255,255,255,200);\n"
+"}\n"
+" \n"
+"QProgressBar::chunk {\n"
+"   background-color: rgba(210,210,210,255);\n"
+"}"));
         progressBar->setMaximum(0);
         progressBar->setValue(0);
         progressBar->setTextVisible(true);
 
         gridLayout->addWidget(progressBar, 1, 1, 1, 1);
 
-        lineEdit_tags = new QLineEdit(gridLayoutWidget);
+        lineEdit_tags = new QLineEdit(centralWidget);
         lineEdit_tags->setObjectName(QStringLiteral("lineEdit_tags"));
         lineEdit_tags->setFont(font);
+        lineEdit_tags->setStyleSheet(QLatin1String("background-image: url();\n"
+"background-color: rgba(255, 255, 255, 100);"));
 
         gridLayout->addWidget(lineEdit_tags, 3, 1, 1, 1);
 
-        label_progress = new QLabel(gridLayoutWidget);
+        label_progress = new QLabel(centralWidget);
         label_progress->setObjectName(QStringLiteral("label_progress"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
@@ -109,30 +129,36 @@ public:
         sizePolicy.setHeightForWidth(label_progress->sizePolicy().hasHeightForWidth());
         label_progress->setSizePolicy(sizePolicy);
         label_progress->setMaximumSize(QSize(16777215, 16777215));
-        QFont font1;
-        font1.setFamily(QStringLiteral("Kristen ITC"));
-        font1.setPointSize(12);
-        font1.setBold(false);
-        font1.setItalic(false);
-        font1.setWeight(50);
-        label_progress->setFont(font1);
+        QFont font2;
+        font2.setFamily(QStringLiteral("Kristen ITC"));
+        font2.setPointSize(12);
+        font2.setBold(false);
+        font2.setItalic(false);
+        font2.setWeight(50);
+        label_progress->setFont(font2);
+        label_progress->setStyleSheet(QLatin1String("color: rgba(0,0,0,180);\n"
+"background-image: url();"));
 
         gridLayout->addWidget(label_progress, 0, 1, 1, 1);
 
-        pushButton_selectFolder = new QPushButton(gridLayoutWidget);
+        pushButton_selectFolder = new QPushButton(centralWidget);
         pushButton_selectFolder->setObjectName(QStringLiteral("pushButton_selectFolder"));
         pushButton_selectFolder->setFont(font);
+        pushButton_selectFolder->setStyleSheet(QLatin1String("background-image: url();\n"
+"background-color: rgba(255, 255, 255, 100);"));
 
         gridLayout->addWidget(pushButton_selectFolder, 6, 2, 1, 1);
 
-        lineEdit_folderPath = new QLineEdit(gridLayoutWidget);
+        lineEdit_folderPath = new QLineEdit(centralWidget);
         lineEdit_folderPath->setObjectName(QStringLiteral("lineEdit_folderPath"));
         lineEdit_folderPath->setFont(font);
+        lineEdit_folderPath->setStyleSheet(QLatin1String("background-image: url();\n"
+"background-color: rgba(255, 255, 255, 100);"));
         lineEdit_folderPath->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_folderPath, 6, 1, 1, 1);
 
-        lineEdit_maxThread = new QLineEdit(gridLayoutWidget);
+        lineEdit_maxThread = new QLineEdit(centralWidget);
         lineEdit_maxThread->setObjectName(QStringLiteral("lineEdit_maxThread"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
@@ -140,10 +166,12 @@ public:
         sizePolicy1.setHeightForWidth(lineEdit_maxThread->sizePolicy().hasHeightForWidth());
         lineEdit_maxThread->setSizePolicy(sizePolicy1);
         lineEdit_maxThread->setFont(font);
+        lineEdit_maxThread->setStyleSheet(QLatin1String("background-image: url();\n"
+"background-color: rgba(255, 255, 255, 100);"));
 
         gridLayout->addWidget(lineEdit_maxThread, 7, 1, 1, 1);
 
-        pushButton_tags = new QPushButton(gridLayoutWidget);
+        pushButton_tags = new QPushButton(centralWidget);
         pushButton_tags->setObjectName(QStringLiteral("pushButton_tags"));
         QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy2.setHorizontalStretch(0);
@@ -151,14 +179,21 @@ public:
         sizePolicy2.setHeightForWidth(pushButton_tags->sizePolicy().hasHeightForWidth());
         pushButton_tags->setSizePolicy(sizePolicy2);
         pushButton_tags->setFont(font);
+        pushButton_tags->setStyleSheet(QLatin1String("background-image: url();\n"
+"background-color: rgba(255, 255, 255, 100);"));
 
         gridLayout->addWidget(pushButton_tags, 3, 2, 1, 1);
 
-        pushButton_start = new QPushButton(gridLayoutWidget);
+        pushButton_start = new QPushButton(centralWidget);
         pushButton_start->setObjectName(QStringLiteral("pushButton_start"));
         pushButton_start->setFont(font);
+        pushButton_start->setStyleSheet(QLatin1String("background-image: url();\n"
+"background-color: rgba(255, 255, 255, 100);"));
 
         gridLayout->addWidget(pushButton_start, 7, 2, 1, 1);
+
+
+        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
 
         KonachanCollecterClass->setCentralWidget(centralWidget);
 
@@ -194,7 +229,7 @@ public:
         lineEdit_maxThread->setAccessibleDescription(QString());
 #endif // QT_NO_ACCESSIBILITY
         lineEdit_maxThread->setInputMask(QApplication::translate("KonachanCollecterClass", "D9", 0));
-        lineEdit_maxThread->setText(QString());
+        lineEdit_maxThread->setText(QApplication::translate("KonachanCollecterClass", "10", 0));
         lineEdit_maxThread->setPlaceholderText(QApplication::translate("KonachanCollecterClass", "10 by default and no more than 30 threads is suggested :otherwise you may be blocked", 0));
         pushButton_tags->setText(QApplication::translate("KonachanCollecterClass", "All tags", 0));
         pushButton_start->setText(QApplication::translate("KonachanCollecterClass", "Start", 0));
