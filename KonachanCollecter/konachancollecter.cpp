@@ -7,10 +7,6 @@ KonachanCollecter::KonachanCollecter(QWidget *parent)
 	// 隐藏进度
 	ui.label_progress->hide();
 	ui.progressBar->hide();
-	// ui信号槽
-	connect(ui.pushButton_tags, SIGNAL(clicked()), this, SLOT(hyperlink()));
-	connect(ui.pushButton_selectFolder, SIGNAL(clicked()), this, SLOT(changeFolderPath()));
-	connect(ui.pushButton_start, SIGNAL(clicked()), this, SLOT(startMisson()));
 }
 
 KonachanCollecter::~KonachanCollecter()
@@ -18,19 +14,20 @@ KonachanCollecter::~KonachanCollecter()
 	
 }
 
-// 查看所有tag
-void KonachanCollecter::hyperlink()
+// 查看所有tag(hyperlink)
+void KonachanCollecter::on_pushButton_tags_clicked()
 {
 	QDesktopServices::openUrl(QUrl("https://konachan.com/tag"));
 }
 
 // 更改保存路径
-void KonachanCollecter::changeFolderPath()
+void KonachanCollecter::on_pushButton_selectFolder_clicked()
 {
 	ui.lineEdit_folderPath->setText(QFileDialog::getExistingDirectory(nullptr, "Please select the destination folder..."));
 }
 
-void KonachanCollecter::startMisson()
+// 开始任务
+void KonachanCollecter::on_pushButton_start_clicked()
 {
 	QString tags = ui.lineEdit_tags->text();					// 源地址
 	QString folderPath = ui.lineEdit_folderPath->text();		// 保存路径
@@ -48,8 +45,6 @@ void KonachanCollecter::startMisson()
 		return;
 	}
 
-	ui.label_progress->setText("Please wait for a minute...");
-	ui.progressBar->setRange(0, 0);
 	ui.label_progress->show();
 	ui.progressBar->show();
 	ui.pushButton_start->setEnabled(false);
@@ -71,7 +66,9 @@ void KonachanCollecter::updateProgress(int value,int max)
 		ui.label_progress->hide();
 		ui.progressBar->hide();
 		ui.pushButton_start->setEnabled(true);
-		QMessageBox::about(this, "Done", QString("All images matched have been download!(%1/%2)").arg(value).arg(max));
+		(value == 0) ?
+			QMessageBox::warning(this, "Error", "No images matched!") :
+			QMessageBox::about(this, "Done", QString("All images matched have been download!(%1/%2)").arg(value).arg(max));
 	}
 }
 

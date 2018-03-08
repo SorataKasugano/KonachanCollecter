@@ -10,6 +10,12 @@
     <height>250</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>250</height>
+   </size>
+  </property>
   <property name="maximumSize">
    <size>
     <width>1000</width>
@@ -23,6 +29,13 @@
   </property>
   <property name="windowTitle">
    <string>KonachanCollecter</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="konachancollecter.qrc">
+    <normaloff>:/konachan.ico</normaloff>:/konachan.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(240, 240, 220);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QWidget" name="gridLayoutWidget">
@@ -81,8 +94,14 @@
          <family>Kristen ITC</family>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(55, 200, 11);</string>
+       </property>
+       <property name="maximum">
+        <number>0</number>
+       </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
        <property name="textVisible">
         <bool>true</bool>
@@ -100,7 +119,7 @@
         <string/>
        </property>
        <property name="placeholderText">
-        <string>6 tags at most:dress long_hair ...</string>
+        <string>6 tags at most like :dress long_hair ... more tags refer to &quot;All tags&quot;</string>
        </property>
       </widget>
      </item>
@@ -154,6 +173,9 @@
        <property name="text">
         <string>D:/KonachanImages</string>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item row="7" column="1">
@@ -169,8 +191,29 @@
          <family>Kristen ITC</family>
         </font>
        </property>
+       <property name="toolTip">
+        <string>tooltip</string>
+       </property>
+       <property name="statusTip">
+        <string/>
+       </property>
+       <property name="whatsThis">
+        <string/>
+       </property>
+       <property name="accessibleName">
+        <string/>
+       </property>
+       <property name="accessibleDescription">
+        <string/>
+       </property>
+       <property name="inputMask">
+        <string>D9</string>
+       </property>
        <property name="text">
-        <string>10</string>
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>10 by default and no more than 30 threads is suggested :otherwise you may be blocked</string>
        </property>
       </widget>
      </item>

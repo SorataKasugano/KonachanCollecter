@@ -47,10 +47,15 @@ public:
         if (KonachanCollecterClass->objectName().isEmpty())
             KonachanCollecterClass->setObjectName(QStringLiteral("KonachanCollecterClass"));
         KonachanCollecterClass->resize(1000, 250);
+        KonachanCollecterClass->setMinimumSize(QSize(1000, 250));
         KonachanCollecterClass->setMaximumSize(QSize(1000, 250));
         QFont font;
         font.setFamily(QStringLiteral("Kristen ITC"));
         KonachanCollecterClass->setFont(font);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/konachan.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        KonachanCollecterClass->setWindowIcon(icon);
+        KonachanCollecterClass->setStyleSheet(QStringLiteral("background-color: rgb(240, 240, 220);"));
         centralWidget = new QWidget(KonachanCollecterClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayoutWidget = new QWidget(centralWidget);
@@ -83,7 +88,9 @@ public:
         progressBar->setObjectName(QStringLiteral("progressBar"));
         progressBar->setEnabled(true);
         progressBar->setFont(font);
-        progressBar->setValue(24);
+        progressBar->setStyleSheet(QStringLiteral("color: rgb(55, 200, 11);"));
+        progressBar->setMaximum(0);
+        progressBar->setValue(0);
         progressBar->setTextVisible(true);
 
         gridLayout->addWidget(progressBar, 1, 1, 1, 1);
@@ -121,6 +128,7 @@ public:
         lineEdit_folderPath = new QLineEdit(gridLayoutWidget);
         lineEdit_folderPath->setObjectName(QStringLiteral("lineEdit_folderPath"));
         lineEdit_folderPath->setFont(font);
+        lineEdit_folderPath->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_folderPath, 6, 1, 1, 1);
 
@@ -166,11 +174,28 @@ public:
         label->setText(QApplication::translate("KonachanCollecterClass", "Tag(s):", 0));
         label_2->setText(QApplication::translate("KonachanCollecterClass", "Folder:", 0));
         lineEdit_tags->setText(QString());
-        lineEdit_tags->setPlaceholderText(QApplication::translate("KonachanCollecterClass", "6 tags at most:dress long_hair ...", 0));
+        lineEdit_tags->setPlaceholderText(QApplication::translate("KonachanCollecterClass", "6 tags at most like :dress long_hair ... more tags refer to \"All tags\"", 0));
         label_progress->setText(QApplication::translate("KonachanCollecterClass", "Please wait for a minute...", 0));
         pushButton_selectFolder->setText(QApplication::translate("KonachanCollecterClass", "Select", 0));
         lineEdit_folderPath->setText(QApplication::translate("KonachanCollecterClass", "D:/KonachanImages", 0));
-        lineEdit_maxThread->setText(QApplication::translate("KonachanCollecterClass", "10", 0));
+#ifndef QT_NO_TOOLTIP
+        lineEdit_maxThread->setToolTip(QApplication::translate("KonachanCollecterClass", "tooltip", 0));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+        lineEdit_maxThread->setStatusTip(QString());
+#endif // QT_NO_STATUSTIP
+#ifndef QT_NO_WHATSTHIS
+        lineEdit_maxThread->setWhatsThis(QString());
+#endif // QT_NO_WHATSTHIS
+#ifndef QT_NO_ACCESSIBILITY
+        lineEdit_maxThread->setAccessibleName(QString());
+#endif // QT_NO_ACCESSIBILITY
+#ifndef QT_NO_ACCESSIBILITY
+        lineEdit_maxThread->setAccessibleDescription(QString());
+#endif // QT_NO_ACCESSIBILITY
+        lineEdit_maxThread->setInputMask(QApplication::translate("KonachanCollecterClass", "D9", 0));
+        lineEdit_maxThread->setText(QString());
+        lineEdit_maxThread->setPlaceholderText(QApplication::translate("KonachanCollecterClass", "10 by default and no more than 30 threads is suggested :otherwise you may be blocked", 0));
         pushButton_tags->setText(QApplication::translate("KonachanCollecterClass", "All tags", 0));
         pushButton_start->setText(QApplication::translate("KonachanCollecterClass", "Start", 0));
     } // retranslateUi

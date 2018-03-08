@@ -83,7 +83,7 @@ void KonachanTask::analyze()
 	m_url.contains("/image") ?										// 下载页面？
 		download() : (m_url.contains("/post/show") ?					// 概览页面？
 			extractDownloadUrl() : (m_url.contains("/post?page=") ?	// 分页页面？
-				extractInfoUrl() : extractPagingUrl()));
+				extractInfoUrl() : extractPagingUrl()));				// 根页页面
 }
 
 // 获取分页url
@@ -91,6 +91,7 @@ void KonachanTask::extractPagingUrl()
 {
 	m_rxList[0].lastIndexIn(m_page);
 	int pageCount = m_rxList[0].cap().section(">", -1).toInt();
+	if (!pageCount)	pageCount = 1;// 无分页
 	queueMutex.lock();
 	for (int index = 1;index <= pageCount;index++)
 	{
@@ -102,6 +103,8 @@ void KonachanTask::extractPagingUrl()
 // 获取概览url
 void KonachanTask::extractInfoUrl()
 {
+	if (m_rxList[1].indexIn(m_page) == -1)
+		emit newFinished(0);
 	int pos = 0;
 	queueMutex.lock();
 	while ((pos = m_rxList[1].indexIn(m_page, pos)) != -1)

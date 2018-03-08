@@ -209,6 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_konachancollecter.h" />
+    <ClInclude Include="resource1.h" />
     <CustomBuild Include="konachanthread.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing konachanthread.h...</Message>
@@ -250,7 +251,10 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="TODO.txt" />
+    <ResourceCompile Include="konachancollecter.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="konachan.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -17,9 +17,9 @@ public:
 	~KonachanCollecter();
 
 	public slots:
-	void hyperlink();
-	void changeFolderPath();
-	void startMisson();
+	void on_pushButton_tags_clicked();
+	void on_pushButton_selectFolder_clicked();
+	void on_pushButton_start_clicked();
 	void updateProgress(int, int);
 
 private:

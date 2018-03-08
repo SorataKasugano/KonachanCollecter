@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
         <file>konachan.ico</file>
-        <file>konachan.png</file>
     </qresource>
 </RCC>
