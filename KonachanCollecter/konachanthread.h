@@ -17,13 +17,11 @@ public:
 	KonachanThread(QString, QString, int);
 	void run();
 
-	public slots:
-	void sendProgress(int);
 signals:
 	void newProgress(int, int);// 当前总进度
 
 private:
-	QString m_seedUrl;		// 原始url
+	QString m_url;			// 线程池任务url
 	QString m_path;			// 保存路径
 	QThreadPool threadPool;	// 管理https连接线程池
 };
@@ -42,13 +40,13 @@ public:
 	void download();
 
 signals:
-	void newFinished(int);// 当前下载进度
+	void newFinished();
 
 private:
 	QString m_url;
 	QSslConfiguration sslConfig;
 	QNetworkRequest m_request;
-	QNetworkReply* m_reply;
+	// m_reply;
 
 	QString m_path;					// 保存路径
 	QByteArray m_page;				// 页面缓存

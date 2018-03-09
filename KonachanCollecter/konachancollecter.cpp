@@ -50,7 +50,7 @@ void KonachanCollecter::on_pushButton_start_clicked()
 	ui.pushButton_start->setEnabled(false);
 
 	thread = new KonachanThread(tags, folderPath, maxThread.toInt());
-	connect(thread, SIGNAL(newProgress(int, int)), this, SLOT(updateProgress(int, int)));
+	connect(thread, &KonachanThread::newProgress, this, &KonachanCollecter::updateProgress);
 	thread->start();
 }
 
@@ -66,7 +66,7 @@ void KonachanCollecter::updateProgress(int value,int max)
 		ui.label_progress->hide();
 		ui.progressBar->hide();
 		ui.pushButton_start->setEnabled(true);
-		(value == 0) ?
+		(max == 0) ?
 			QMessageBox::warning(this, "Error", "No images matched!") :
 			QMessageBox::about(this, "Done", QString("All images matched have been download!(%1/%2)").arg(value).arg(max));
 	}

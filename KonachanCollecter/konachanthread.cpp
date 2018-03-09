@@ -7,43 +7,37 @@ namespace {
 }
 
 KonachanThread::KonachanThread(QString tags, QString path, int max = 10)
-	: m_seedUrl("https://konachan.com/post?tags=" + tags)
+	: m_url("https://konachan.com/post?tags=" + tags)
 	, m_path(path)
 {
 	threadPool.setMaxThreadCount(max);	// 设置线程池最大线程数
 	imageFinished = imageCount = 0;		// 初始化下载进度
-	queueUrl.enqueue(m_seedUrl);			// 初始化url队列
+	queueUrl.enqueue(m_url);				// 初始化url队列
 }
 
 void KonachanThread::run()
 {
 	while (true)
 	{
-		while(!queueUrl.isEmpty())
+		while (!queueUrl.isEmpty())
 		{
 			queueMutex.lock();
-			QString url = queueUrl.dequeue();
+			m_url = queueUrl.dequeue();
 			queueMutex.unlock();
 			// QThreadPool deletes the QRunnable automatically by default
-			KonachanTask* task = new KonachanTask(url, m_path);
-			QObject::connect(task, SIGNAL(newFinished(int)), this, SLOT(sendProgress(int)));
+			KonachanTask* task = new KonachanTask(m_url, m_path);
+			connect(task, &KonachanTask::newFinished, [=] {emit newProgress(imageFinished, imageCount);});
 			threadPool.start(task);
-			if (url.contains("/image"))
+			if (m_url.contains("/image"))
 			{
 				imageCount++;
 				emit newProgress(imageFinished, imageCount);// 更新下载进度
 			}
-		}
+		} 
 		if (!threadPool.activeThreadCount())
 			break;
 		sleep(1);// 每秒添加一次url队列
 	}
-}
-
-// 更新下载进度
-void KonachanThread::sendProgress(int value)
-{
-	emit newProgress(value, imageCount);
 }
 
 KonachanTask::KonachanTask(QString url, QString path)
@@ -62,15 +56,13 @@ KonachanTask::KonachanTask(QString url, QString path)
 
 void KonachanTask::run()
 {
-	QNetworkAccessManager* pManager = new QNetworkAccessManager();
-	QEventLoop loop;
-	int statusCode;
+	QNetworkAccessManager* pManager = new QNetworkAccessManager(this);
 	m_request.setUrl(QUrl(m_url));
-	m_reply = pManager->get(m_request);
-	connect(m_reply, SIGNAL(finished()), &loop, SLOT(quit()));
+	QEventLoop loop;
+	QNetworkReply* m_reply = pManager->get(m_request);
+	connect(m_reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
 	loop.exec();
 	m_page = m_reply->readAll();
-	// it is the responsibility of the user to delete the QNetworkReply object at an appropriate time
 	pManager->deleteLater();
 	m_reply->deleteLater();
 	analyze();
@@ -103,7 +95,7 @@ void KonachanTask::extractPagingUrl()
 void KonachanTask::extractInfoUrl()
 {
 	if (m_rxList[1].indexIn(m_page) == -1)
-		emit newFinished(0);
+		emit newFinished();// 无匹配图片
 	int pos = 0;
 	queueMutex.lock();
 	while ((pos = m_rxList[1].indexIn(m_page, pos)) != -1)
@@ -131,5 +123,5 @@ void KonachanTask::download()
 	file.write(m_page);
 	file.close();
 	imageFinished++;
-	emit newFinished(imageFinished);// 更新下载进度
+	emit newFinished();// 更新下载进度
 }
