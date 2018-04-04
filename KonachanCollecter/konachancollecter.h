@@ -7,7 +7,7 @@
 #include <QDir>
 #include <QDesktopServices>
 #include "ui_konachancollecter.h"
-#include "konachanthread.h"
+#include "poolmanager.h"
 class KonachanCollecter : public QMainWindow
 {
 	Q_OBJECT
@@ -20,10 +20,11 @@ public:
 	void on_pushButton_tags_clicked();
 	void on_pushButton_selectFolder_clicked();
 	void on_pushButton_start_clicked();
-	void updateProgress(int, int);
+	void update_progress(QString progress);
 
 private:
 	Ui::KonachanCollecterClass ui;
-	KonachanThread* thread;// 工作线程
+	QThread worker_thread_;
+	int done_, dup_, sum_;
 };
 #endif // KONACHANCOLLECTER_H
