@@ -75,7 +75,7 @@ void KonachanCollecter::update_progress(QString progress)
 	else if (progress == "todo") sum_++;
 	else if (progress == "done") done_++;
 	else if (progress == "dup") dup_++;
-	ui.label_progress->setText(QString("Downloading...[new:%1/%2 dup:%3 sum:%4]").arg(done_).arg(sum_-done_).arg(dup_).arg(sum_));
+	ui.label_progress->setText(QString("Downloading...[new:%1/%2 dup:%3 sum:%4]").arg(done_).arg(sum_ - dup_).arg(dup_).arg(sum_));
 	ui.progressBar->setMaximum(sum_ - dup_);
 	ui.progressBar->setValue(done_);
 	if ((done_ + dup_ == sum_) && (done_ != 0))
