@@ -25,7 +25,7 @@ void KonachanCollecter::on_pushButton_selectFolder_clicked()
 	ui.lineEdit_folderPath->setText(QFileDialog::getExistingDirectory(nullptr, "Please select the destination folder..."));
 }
 
-// start misson
+// start mission
 void KonachanCollecter::on_pushButton_start_clicked()
 {
 	dup_ = done_ = sum_ = 0;
@@ -45,7 +45,7 @@ void KonachanCollecter::on_pushButton_start_clicked()
 		QMessageBox::warning(this, "Error", "Create directory failed!");
 		return;
 	}
-	qInfo("Misson start: tag(s)=[%s]", qPrintable(tags));
+	qInfo("Mission start: tag(s)=[%s]", qPrintable(tags));
 
 	ui.label_progress->setText("Please wait for a minute...");
 	ui.progressBar->setMaximum(0);
@@ -83,7 +83,7 @@ void KonachanCollecter::update_progress(QString progress)
 		ui.label_progress->hide();
 		ui.progressBar->hide();
 		ui.pushButton_start->setEnabled(true);
-		qInfo("Misson accomplished: details=[new:%d dup:%d sum:%d/%d]", done_, dup_, done_ + dup_, sum_);
+		qInfo("Mission accomplished: details=[new:%d dup:%d sum:%d/%d]", done_, dup_, done_ + dup_, sum_);
 		QMessageBox::about(this, "Congratulations!", QString("All images done.[%1/%2 new:%3]").arg(done_ + dup_).arg(sum_).arg(done_));
 	}
 }
