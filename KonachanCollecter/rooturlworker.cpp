@@ -7,7 +7,5 @@ void RootUrlWorker::handle_page()
 	int paging_count = reg_exp.cap().section(">", -1).toInt();
 	if (!paging_count) paging_count = 1;
 	for (int index = 1;index <= paging_count;index++)
-	{
 		emit new_task(QString("https://konachan.com/post?page=%1&").arg(index) + url_.section("/post?", -1));
-	}
 }

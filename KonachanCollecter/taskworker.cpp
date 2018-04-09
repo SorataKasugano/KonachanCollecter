@@ -12,16 +12,17 @@ void TaskWorker::run()
 	QNetworkAccessManager* manager = new QNetworkAccessManager;
 	QNetworkReply* reply;
 	for (int i = 0;i < 3;i++)
-	{// 重发三次
+	{// resend when error
 		reply = manager->get(request);
 		connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
 		loop.exec();
 		if (!reply->error()) break;
-		qInfo("Network Error : %d--%s!\nURL : %s", reply->error(), reply->errorString(), reply->url().toString());
+		qInfo("Network Error: %d--%s![%s]", reply->error(), reply->errorString(), reply->url().toString());
 		delete reply; reply = nullptr;
 	}
 	page_ = reply->readAll();
 	reply->deleteLater();
+	manager->deleteLater();
 	//connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
 	//	[&](QNetworkReply::NetworkError error) {
 	//	if (error) {

@@ -13,7 +13,7 @@ PoolManager::~PoolManager()
 void PoolManager::add_new_task(QString task)
 {// TODO: 抽取封装逻辑处理
 	if(!task.contains("http"))
-	{
+	{// progress update task
 		emit new_progress(task); 
 		return;
 	}
