@@ -1,4 +1,0 @@
-2018-04-09 10:14:58: Misson start: tag(s)=[long_hair]
-2018-04-09 10:16:04: Application quitted.
-2018-04-09 10:17:15: Misson start: tag(s)=[benghuai_xueyuan]
-2018-04-09 10:19:23: Application quitted.
