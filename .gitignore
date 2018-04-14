@@ -14,7 +14,8 @@
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
-[Rr]elease/
+KonachanCollecter/Release/
+KonachanCollecter/GeneratedFiles/
 [Rr]eleases/
 [Xx]64/
 [Xx]86/
