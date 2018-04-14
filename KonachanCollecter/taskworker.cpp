@@ -11,37 +11,20 @@ void TaskWorker::run()
 	QEventLoop loop;
 	QNetworkAccessManager* manager = new QNetworkAccessManager;
 	QNetworkReply* reply;
-	for (int i = 0;i < 3;i++)
+	bool suc = false;
+	for (int i = 0;i < 3 && !suc;i++)
 	{// resend when error
 		reply = manager->get(request);
 		connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
 		loop.exec();
-		if (!reply->error()) break;
-		qInfo("Network Error: %d--%s![%s]", reply->error(), reply->errorString(), reply->url().toString());
-		delete reply; reply = nullptr;
+		if (!reply->error()) {
+			suc = true;// quit loop when success
+			page_ = reply->readAll();
+		}
+		else qInfo("Network Error(%d): %s![%s]", reply->error(), qPrintable(reply->errorString()), qPrintable(reply->url().toString()));
+		delete reply; reply = nullptr;// mem release
 	}
-	page_ = reply->readAll();
-	reply->deleteLater();
-	manager->deleteLater();
-	//connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
-	//	[&](QNetworkReply::NetworkError error) {
-	//	if (error) {
-	//		qDebug("Network Error : %d--%s!\nURL : %s", error, reply->errorString(), reply->url().toString());
-	//		reply->abort();
-	//		delete reply;
-	//		reply = nullptr;
-	//	}
-	//	else {
-	//		err = false;
-	//		page_ = reply->readAll();
-	//	}
-	//});
-	//for (int i = 0;i < 3 || !err;i++) {
-	//	reply = manager->get(request);
-	//	loop.exec();
-	//	delete reply; reply = nullptr;
-	//}
-	handle_page();
+	suc ? handle_page() : emit new_task("none");
 }
 
 TaskWorker* TaskWorker::set_url(QString url)

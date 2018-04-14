@@ -16,7 +16,6 @@ public:
 	void run();
 	TaskWorker* set_url(QString url);
 	TaskWorker* set_path(QString path);
-	// TODO: 可以把所有字符串处理表示为正则提取到配置文件，以供不同网站适配
 	virtual void handle_page() = 0;
 
 signals:
