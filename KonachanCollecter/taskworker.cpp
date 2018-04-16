@@ -24,6 +24,7 @@ void TaskWorker::run()
 		else qInfo("Network Error(%d): %s![%s]", reply->error(), qPrintable(reply->errorString()), qPrintable(reply->url().toString()));
 		delete reply; reply = nullptr;// mem release
 	}
+	manager->deleteLater();
 	suc ? handle_page() : emit new_task("none");
 }
 
