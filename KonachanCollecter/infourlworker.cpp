@@ -7,5 +7,6 @@ void InfoUrlWorker::handle_page()
 	url_ = reg_exp.cap();
 	// filter duplicate images
 	QFileInfo file(path_ + "/" + url_.section("/", -1));
-	emit file.exists() ? new_task("dup") : new_task(url_);
+	if (file.exists()) emit new_task("dup");
+	else { emit new_task("new"); emit new_task(url_); };
 }

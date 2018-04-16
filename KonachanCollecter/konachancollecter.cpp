@@ -28,7 +28,7 @@ void KonachanCollecter::on_pushButton_selectFolder_clicked()
 // start mission
 void KonachanCollecter::on_pushButton_start_clicked()
 {
-	dup_ = done_ = sum_ = 0;
+	progress_map_.clear();
 	QString tags = ui.lineEdit_tags->text();	
 	QString folder_path = ui.lineEdit_folderPath->text();
 	// max threads in thread pool
@@ -72,19 +72,23 @@ void KonachanCollecter::update_progress(QString progress)
 		QMessageBox::warning(this, "Error", "No image matched!");
 		return;
 	}
-	else if (progress == "todo") sum_++;
-	else if (progress == "done") done_++;
-	else if (progress == "dup") dup_++;
-	ui.label_progress->setText(QString("Downloading...[new:%1/%2 dup:%3 sum:%4]").arg(done_).arg(sum_ - dup_).arg(dup_).arg(sum_));
-	ui.progressBar->setMaximum(sum_ - dup_);
-	ui.progressBar->setValue(done_);
-	if ((done_ + dup_ == sum_) && (done_ != 0))
+	// map keys:"todo" "dup" "new" "done"
+	else progress_map_[progress.toStdString()]++;
+
+	ui.label_progress->setText(QString("Downloading...[done:%1/%2 new:%2 dup:%3 sum:%4]")
+		.arg(progress_map_["done"]).arg(progress_map_["new"]).arg(progress_map_["dup"]).arg(progress_map_["todo"]));
+	ui.progressBar->setMaximum(progress_map_["new"]);
+	ui.progressBar->setValue(progress_map_["done"]);
+
+	if (progress_map_["done"] == progress_map_["new"] && (progress_map_["done"] != 0))
 	{
 		ui.label_progress->hide();
 		ui.progressBar->hide();
 		ui.pushButton_start->setEnabled(true);
-		qInfo("Mission accomplished: details=[new:%d dup:%d sum:%d/%d]", done_, dup_, done_ + dup_, sum_);
-		QMessageBox::about(this, "Congratulations!", QString("All images done.[%1/%2 new:%3]").arg(done_ + dup_).arg(sum_).arg(done_));
+		qInfo("Mission accomplished: details=[new:%d dup:%d sum:%d/%d]"
+			, progress_map_["new"], progress_map_["dup"], progress_map_["done"] + progress_map_["dup"], progress_map_["todo"]);
+		QMessageBox::about(this, "Congratulations!", QString("All images done.[%1/%2 new:%3]")
+			.arg(progress_map_["done"] + progress_map_["dup"]).arg(progress_map_["todo"]).arg(progress_map_["new"]));
 	}
 }
 
