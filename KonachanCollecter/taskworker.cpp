@@ -21,11 +21,11 @@ void TaskWorker::run()
 			suc = true;// quit loop when success
 			page_ = reply->readAll();
 		}
-		else qInfo("Network Error(%d): %s![%s]", reply->error(), qPrintable(reply->errorString()), qPrintable(reply->url().toString()));
+		else qInfo("Network Error(%d): %s![%s]", reply->error(), qPrintable(reply->errorString()), qPrintable(url_));
 		delete reply; reply = nullptr;// mem release
 	}
 	manager->deleteLater();
-	suc ? handle_page() : emit new_task("none");
+	suc ? handle_page() : qInfo("Request failed: %s",qPrintable(url_));
 }
 
 TaskWorker* TaskWorker::set_url(QString url)
